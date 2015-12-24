@@ -32,7 +32,7 @@ public class LuckyBlocksMainController extends JavaPlugin implements Listener{
     @EventHandler
     public void LuckyBlocks(BlockBreakEvent event){
         if (event.getBlock().getType().equals(Material.SPONGE)){
-            new LuckyBlockActionController().armour(event);
+            new LuckyBlocksProbabilityClass().selection(event);
 
         }
         else{

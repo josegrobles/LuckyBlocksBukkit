@@ -32,12 +32,12 @@ public class LuckyBlockActionController {
 
         world.dropItemNaturally(loc,TheSword);
     }
-    public void SpawnEnemyEntities(BlockBreakEvent event){
+    public void SpawnEnemyEntities(BlockBreakEvent event, int Quantity){
         Location loc = event.getBlock().getLocation();
         World world = loc.getWorld();
         String[] TypeOfEntyties = new String[]{"BLAZE","CAVE_SPIDER","CREEPER","ENDERMAN","GIANT","GHAST","MAGMA_CUBE","PIG_ZOMBIE","SILVERFISH","SLIME","WITCH","ZOMBIE"};
         int Randomizer = (int)(Math.random()*TypeOfEntyties.length);
-        for(int i=0;i<3;i++){
+        for(int i=0;i<Quantity;i++){
          double X = loc.getX()-i;
          double Z = loc.getBlockZ()-i;
             Location locModified = new Location(world,X,loc.getY(),Z);

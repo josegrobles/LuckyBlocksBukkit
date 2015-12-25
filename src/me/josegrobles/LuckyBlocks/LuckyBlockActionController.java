@@ -1,6 +1,5 @@
 package me.josegrobles.LuckyBlocks;
 
-import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -12,7 +11,6 @@ import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.potion.PotionType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +18,7 @@ import java.util.List;
 /**
  * Created by Jose on 24/12/15.
  */
+
 public class LuckyBlockActionController {
     public void EnchantedSword(BlockBreakEvent event){
         Location loc = event.getBlock().getLocation();
@@ -91,4 +90,63 @@ public class LuckyBlockActionController {
             }
         }
     }
+    public void lavaDrop(BlockBreakEvent event){
+        int j,k,l,notUse=0;
+        Location loc = event.getPlayer().getLocation();
+        World world = loc.getWorld();
+        int X = (loc.getBlockX())+1;
+        int Y = loc.getBlockY();
+        int Z = (loc.getBlockZ())-1;
+        for (j=X;j>X-3;j--){
+            for (k=Z;k<Z+3;k++){
+                for (l=Y;l<Y+4;l++){
+                    if (notUse!=4) world.getBlockAt(j,l,k).setType(Material.IRON_FENCE);
+                    else world.getBlockAt(j,l,k).setType(Material.AIR);
+                }
+                notUse++;
+            }
+        }
+        world.getBlockAt(loc.getBlockX(),loc.getBlockY()+3,loc.getBlockZ()).setType(Material.LAVA);
+    }
+    public void AnvilDrop(BlockBreakEvent event){
+        int j,k,l,notUse=0;
+        Location loc = event.getPlayer().getLocation();
+        World world = loc.getWorld();
+        int X = (loc.getBlockX())+1;
+        int Y = loc.getBlockY();
+        int Z = (loc.getBlockZ())-1;
+        for (j=X;j>X-3;j--){
+            for (k=Z;k<Z+3;k++){
+                for (l=Y;l<Y+4;l++){
+                    if (notUse!=4) world.getBlockAt(j,l,k).setType(Material.IRON_FENCE);
+                    else world.getBlockAt(j,l,k).setType(Material.AIR);
+                }
+                notUse++;
+            }
+        }
+        for (j=3;j>0;j--){
+            world.getBlockAt(loc.getBlockX(),(loc.getBlockY()+80)-j,loc.getBlockZ()).setType(Material.ANVIL);
+        }
+    }
+    public void PrimeTNT(BlockBreakEvent event){
+        int j,k,l,notUse=0;
+        Location loc = event.getBlock().getLocation();
+        World world = loc.getWorld();
+        int X = (event.getBlock().getX())+2;
+        int Y = event.getBlock().getY();
+        int Z = (event.getBlock().getZ())-2;
+        for (j=X;j>X-5;j--){
+            for (k=Z;k<Z+5;k++){
+                for (l=Y+2;l<Y+3;l++){
+                    if (notUse==0 || notUse==2 || notUse==4 || notUse==10 || notUse==12 || notUse==14 || notUse==20 || notUse==22 || notUse==24){
+                        Location loc2 = new Location(world,j,l,k);
+                        world.spawnEntity(loc2,EntityType.PRIMED_TNT);
+                    }
+                    else world.getBlockAt(j,l,k).setType(Material.GOLD_AXE);
+                }
+                notUse++;
+            }
+        }
+    }
 }
+//Añadir bloques aleatorios

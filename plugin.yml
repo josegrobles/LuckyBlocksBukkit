@@ -1,0 +1,10 @@
+name: LuckyBlocksBukkit
+main: me.josegrobles.LuckyBlocks.LuckyBlocksMainController
+version: 1.0-SNAPSHOT
+commands:
+    resetscoreboard:
+        description: Reset The Scoreboard to 0
+        usage: Writ
+    language:
+        description: Choose the language of the Plugin. EN or ES available at the moment
+        usage: Write /language EN or ES

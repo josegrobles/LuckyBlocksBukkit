@@ -6,6 +6,9 @@
 3. Customizable Language
 4. Scoreboard
 
+####Lucky Block Placement
+1.To place a Lucky Block you should use a `SPONGE` block
+
 ####Permissions
 1. `LuckyBlocks.use` allows you to break Lucky Blocks
 2. `LuckyBlocks.resetScoreboard` allows you to use `/resetscoreboard` to reset the Death count info

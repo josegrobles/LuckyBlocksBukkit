@@ -387,7 +387,42 @@ public class LuckyBlocksActionController implements Listener{
         zombieEquipment.setLeggings(new ItemStack(Material.DIAMOND_LEGGINGS));
         zombieEquipment.setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE));
         zombieEquipment.setBoots(new ItemStack(Material.GOLD_BOOTS));
-        zombieEquipment.setItemInHand(new ItemStack(Material.DIAMOND_SWORD));
+        ItemStack sword = new ItemStack(Material.DIAMOND_SWORD);
+        sword.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 4);
+        zombieEquipment.setItemInHand(sword);
+        zombieEquipment.setItemInHandDropChance(0.5F);
     }
-
+    public void pyramid(BlockBreakEvent event){
+        int j,k,l,notUse=0,height=0;
+        Location loc = event.getBlock().getLocation();
+        World world = loc.getWorld();
+        int X = (loc.getBlockX())-3;
+        int Y = loc.getBlockY();
+        int Z = (loc.getBlockZ())+3;
+        for (j=X;j<X+7;j++){
+            for (k=Z;k>Z-7;k--){
+                for (l=Y;l<Y+4;l++){
+                    if (height==0 && ((notUse>=0 && notUse<=6) || notUse==7 || notUse==13 || notUse==14 || notUse==20
+                            || notUse==21 || notUse==27 || notUse==28 || notUse==34 || notUse==35
+                            || notUse==41 || (notUse>=42 && notUse<=48))){
+                        world.getBlockAt(j,l,k).setType(Material.SANDSTONE);
+                    }
+                    else if(height==1 && ((notUse>=8 && notUse<=12) || (notUse>=36 && notUse<=40)
+                        || notUse==15 || notUse==22 || notUse==29
+                        || notUse==19 || notUse==26 || notUse==33
+                    )){ world.getBlockAt(j,l,k).setType(Material.SANDSTONE);}
+                    else if(height==2 && ((notUse>=16 && notUse<=18) || (notUse>=30 && notUse<=32) || notUse==23 || notUse==25)){
+                        world.getBlockAt(j,l,k).setType(Material.SANDSTONE);
+                    }
+                    else if (height==3 && notUse==24) world.getBlockAt(j,l,k).setType(Material.GOLD_BLOCK);
+                    if ((height>=0 && height<=2) && (notUse==0 || notUse==6 || notUse==42 || notUse==48)) world.getBlockAt(j,l,k).setType(Material.SANDSTONE);
+                    if ((height==3) && (notUse==0 || notUse==6 || notUse==42 || notUse==48)) world.getBlockAt(j,l,k).setType(Material.GOLD_BLOCK);
+                    if ((height==0) && (notUse==8 || notUse==12 || notUse==36 || notUse==40)) world.getBlockAt(j,l,k).setType(Material.SPONGE);
+                    height++;
+                }
+                height=0;
+                notUse++;
+            }
+        }
+    }
 }

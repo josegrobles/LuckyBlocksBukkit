@@ -48,43 +48,46 @@ public class LuckyBlocksMainController extends JavaPlugin implements Listener {
             e.printStackTrace();
         }
         getServer().getPluginManager().registerEvents(this, this);
-        try {
+        if (config.getBoolean("AUTOMATIC_DOWNLOAD")) {
+
             try {
-                final File[] libs = new File[]{
-                        new File(getDataFolder(), "json-20151123.jar")};
-                for (final File lib : libs) {
-                    if (!lib.exists()) {
-                        JarUtils.extractFromJar(lib.getName(),
-                                lib.getAbsolutePath());
+                try {
+                    final File[] libs = new File[]{
+                            new File(getDataFolder(), "json-20151123.jar")};
+                    for (final File lib : libs) {
+                        if (!lib.exists()) {
+                            JarUtils.extractFromJar(lib.getName(),
+                                    lib.getAbsolutePath());
+                        }
                     }
-                }
-                for (final File lib : libs) {
-                    if (!lib.exists()) {
-                        getLogger().warning(
-                                "There was a critical error loading My plugin! Could not find lib: "
-                                        + lib.getName());
-                        Bukkit.getServer().getPluginManager().disablePlugin(this);
-                        return;
+                    for (final File lib : libs) {
+                        if (!lib.exists()) {
+                            getLogger().warning(
+                                    "There was a critical error loading My plugin! Could not find lib: "
+                                            + lib.getName());
+                            Bukkit.getServer().getPluginManager().disablePlugin(this);
+                            return;
+                        }
+                        new LuckyBlocksDownloaderController().addClassPath(JarUtils.getJarUrl(lib));
                     }
-                    new LuckyBlocksDownloaderController().addClassPath(JarUtils.getJarUrl(lib));
+                } catch (final Exception e) {
+                    e.printStackTrace();
                 }
-            } catch (final Exception e) {
+                JSONObject json = new LuckyBlocksDownloaderController().readJsonFromUrl("https://api.github.com/repos/josegrobles/luckyblocksbukkit/releases");
+                JSONObject json2 = new LuckyBlocksDownloaderController().readJsonFromUrl("https://api.github.com/repos/josegrobles/luckyblocksbukkit/releases/" + json.get("id") + "/assets");
+                URL url = new URL(json2.get("browser_download_url").toString());
+                int GitHubVersion = Integer.parseInt(json.get("name").toString().replaceAll("\\.", ""));
+                int CurrentVersion = Integer.parseInt(Bukkit.getServer().getPluginManager().getPlugin("LuckyBlocksBukkit").getDescription().getVersion().toString().replaceAll("\\.", ""));
+                if (GitHubVersion > CurrentVersion) {
+                    new LuckyBlocksDownloaderController().saveNewUpdate(url);
+                    getLogger().info(this.language.getString("NEW_VERSION"));
+                } else {
+                    getLogger().info(this.language.getString("NO_NEW_VERSION"));
+                    getLogger().info("Git Version: " + GitHubVersion + " Server Version: " + CurrentVersion);
+                }
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-            JSONObject json = new LuckyBlocksDownloaderController().readJsonFromUrl("https://api.github.com/repos/josegrobles/luckyblocksbukkit/releases");
-            JSONObject json2 = new LuckyBlocksDownloaderController().readJsonFromUrl("https://api.github.com/repos/josegrobles/luckyblocksbukkit/releases/" + json.get("id") + "/assets");
-            URL url = new URL(json2.get("browser_download_url").toString());
-            int GitHubVersion = Integer.parseInt(json.get("name").toString().replaceAll("\\.", ""));
-            int CurrentVersion = Integer.parseInt(Bukkit.getServer().getPluginManager().getPlugin("LuckyBlocksBukkit").getDescription().getVersion().toString().replaceAll("\\.", ""));
-            if (GitHubVersion > CurrentVersion) {
-                new LuckyBlocksDownloaderController().saveNewUpdate(url);
-                getLogger().info(this.language.getString("NEW_VERSION"));
-            } else {
-                getLogger().info(this.language.getString("NO_NEW_VERSION"));
-                getLogger().info("Git Version: " + GitHubVersion + " Server Version: " + CurrentVersion);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
         manager = Bukkit.getScoreboardManager();
         manager2 = Bukkit.getScoreboardManager();

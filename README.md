@@ -7,7 +7,7 @@
 4. Scoreboard
 
 ####Lucky Block Placement
-1.To place a Lucky Block you should use a `SPONGE` block
+1. To place a Lucky Block you should use a `SPONGE` block
 
 ####Permissions
 1. `LuckyBlocks.use` allows you to break Lucky Blocks
@@ -16,10 +16,11 @@
 
 ####Config File
 1. `RESOURCE_PACK_AUTOMATIC_DOWNLOAD: <boolean>` Change it to false if you don't want to automatically download the texture pack
-2. `LANGUAGE: EN/ES` Change it between EN or ES. Right below I explain how to customize the language.
+2. `LANGUAGE: EN/ES/CUSTOM` Change it between EN or ES. Right below I explain how to customize the language.
+3. `AUTOMATIC_DOWNLOAD: <boolean>` By default is `true` you can change it to `false` if you don't want Automatic Update Download
 
 ####Customize language
-1. To customize the language you just set the config file as it is.
+1. To customize the language you set the flag `LANGUAGE` as `CUSTOM` in the config file as it is.
 2. Then you proceed to change the language.yml file
 
 #### Quick Install

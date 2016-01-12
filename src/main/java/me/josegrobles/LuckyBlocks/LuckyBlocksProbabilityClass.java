@@ -12,7 +12,8 @@ public class LuckyBlocksProbabilityClass {
         if (RandomSelection >= 0 && RandomSelection <= 10) new LuckyBlocksActionController().LuckyPotion(e);
         else if (RandomSelection >= 11 && RandomSelection <= 15) new LuckyBlocksActionController().EnchantedSword(e);
         else if (RandomSelection >= 16 && RandomSelection <= 20) new LuckyBlocksActionController().EnchantedBow(e);
-        else if (RandomSelection >= 21 && RandomSelection <= 40) new LuckyBlocksActionController().RandomItems(e);
+        else if (RandomSelection >= 21 && RandomSelection <= 30) new LuckyBlocksActionController().RandomItems(e);
+        else if (RandomSelection >= 31 && RandomSelection <= 40) new LuckyBlocksActionController().RandomItems(e);
         else if (RandomSelection >= 41 && RandomSelection <= 52) new LuckyBlocksActionController().armour(e);
         else if (RandomSelection >= 53 && RandomSelection <= 60){
             int spawnQuantity = (int)(Math.random()*10);

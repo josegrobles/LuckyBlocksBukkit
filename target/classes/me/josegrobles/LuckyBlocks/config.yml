@@ -1,3 +1,5 @@
 # default config.yml
 RESOURCE_PACK_AUTOMATIC_DOWNLOAD: true
 LANGUAGE: "EN"
+
+AUTOMATIC_DOWNLOAD: true

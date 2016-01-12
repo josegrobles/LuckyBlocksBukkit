@@ -14,10 +14,11 @@ public class LuckyBlocksProbabilityClass {
         else if (RandomSelection >= 16 && RandomSelection <= 20) new LuckyBlocksActionController().EnchantedBow(e);
         else if (RandomSelection >= 21 && RandomSelection <= 40) new LuckyBlocksActionController().RandomItems(e);
         else if (RandomSelection >= 41 && RandomSelection <= 52) new LuckyBlocksActionController().armour(e);
-        else if (RandomSelection >= 53 && RandomSelection <= 67){
+        else if (RandomSelection >= 53 && RandomSelection <= 60){
             int spawnQuantity = (int)(Math.random()*10);
             new LuckyBlocksActionController().SpawnEnemyEntities(e,spawnQuantity);
         }
+        else if (RandomSelection >= 61 && RandomSelection <= 67)  new LuckyBlocksActionController().ZombieSpawn(e);
         else if (RandomSelection >= 68 && RandomSelection <= 70) new LuckyBlocksActionController().AnvilDrop(e);
         else if (RandomSelection >= 71 && RandomSelection <= 74) new LuckyBlocksActionController().lavaDrop(e);
         else if (RandomSelection >= 75 && RandomSelection <= 82) new LuckyBlocksActionController().LuckyPit(e);
@@ -26,9 +27,5 @@ public class LuckyBlocksProbabilityClass {
         else if (RandomSelection >= 91 && RandomSelection <= 94) new LuckyBlocksActionController().MobApocalypyse(e);
         else if (RandomSelection >= 95 && RandomSelection <= 97) new LuckyBlocksActionController().MagicChest(e);
         else new LuckyBlocksActionController().infiniteDestruction(e);
-
-
-
-
     }
 }

@@ -10,6 +10,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -370,6 +371,23 @@ public class LuckyBlocksActionController implements Listener{
         world.dropItemNaturally(loc,randomItem);
         world.playEffect(loc,Effect.MOBSPAWNER_FLAMES,100);
         world.playSound(loc, Sound.CAT_MEOW,10,1);
+    }
+    public void ZombieSpawn(BlockBreakEvent event){
+        Location loc = event.getBlock().getLocation();
+        World world = loc.getWorld();
+        Zombie zombie = (Zombie)  world.spawnEntity(loc,EntityType.ZOMBIE);
+        zombie.setCustomName("Bob the Zombie");
+        zombie.setCustomNameVisible(true);
+        zombie.setMaxHealth(90);
+        zombie.setHealth(90);
+        zombie.setVillager(true);
+        zombie.setTarget(event.getPlayer());
+        EntityEquipment zombieEquipment = zombie.getEquipment();
+        zombieEquipment.setHelmet(new ItemStack(Material.DIAMOND_HELMET));
+        zombieEquipment.setLeggings(new ItemStack(Material.DIAMOND_LEGGINGS));
+        zombieEquipment.setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE));
+        zombieEquipment.setBoots(new ItemStack(Material.GOLD_BOOTS));
+        zombieEquipment.setItemInHand(new ItemStack(Material.DIAMOND_SWORD));
     }
 
 }

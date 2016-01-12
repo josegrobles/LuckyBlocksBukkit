@@ -1,6 +1,6 @@
 name: LuckyBlocksBukkit
 main: me.josegrobles.LuckyBlocks.LuckyBlocksMainController
-version: 1.0-SNAPSHOT
+version: 2.0
 commands:
     resetscoreboard:
         description: Reset The Scoreboard to 0

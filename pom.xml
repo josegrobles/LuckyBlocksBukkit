@@ -6,17 +6,20 @@
 
     <groupId>me.josegrobles.LuckyBlocks</groupId>
     <artifactId>LuckyBlocksBukkit</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1</version>
 
     <repositories>
         <repository>
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
-    <repository>
-        <id>Plugin Metrics</id>
-        <url>http://repo.mcstats.org/content/repositories/public</url>
-    </repository>
+        <repository>
+            <id>central</id>
+            <url>https://repo1.maven.org/maven2</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
     </repositories>
     <dependencies>
         <!--Bukkit API-->
@@ -26,12 +29,10 @@
             <version>1.8.8-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
-        <!--McStats API-->
         <dependency>
-            <groupId>org.mcstats.bukkit</groupId>
-            <artifactId>metrics</artifactId>
-            <version>R8-SNAPSHOT</version>
-            <scope>compile</scope>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20151123</version>
         </dependency>
     </dependencies>
     <build>
@@ -44,7 +45,6 @@
         </resources>
         <plugins>
             <!-- Compiler -->
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -55,7 +55,7 @@
                 </configuration>
             </plugin>
 
-
         </plugins>
+
     </build>
 </project>
